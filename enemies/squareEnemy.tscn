@@ -17,4 +17,4 @@ shape = SubResource("RectangleShape2D_eno1y")
 shape = SubResource("RectangleShape2D_i5cxc")
 
 [node name="StatsComponent" parent="." index="4"]
-health = 5
+health = 2

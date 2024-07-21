@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://mq7wvo4mf3ao"]
+[gd_scene load_steps=6 format=3 uid="uid://mq7wvo4mf3ao"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_8vt0t"]
 [ext_resource type="PackedScene" uid="uid://c0pqq4vfl7pif" path="res://player/player.tscn" id="1_b0xl5"]
 [ext_resource type="PackedScene" uid="uid://cek585jf0s8fx" path="res://enemies/squareEnemy.tscn" id="2_26o63"]
 [ext_resource type="PackedScene" uid="uid://bqwdp05qrlte6" path="res://enemies/enemyGenerator.tscn" id="4_21mmo"]
+[ext_resource type="PackedScene" uid="uid://8yg3n8x287n5" path="res://enemies/triangle_enemy.tscn" id="5_4lx07"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_8vt0t")
@@ -22,7 +23,7 @@ color = Color(0, 0.750042, 0.75265, 1)
 position = Vector2(960, 540)
 
 [node name="EnemyGenerator" parent="." instance=ExtResource("4_21mmo")]
-enemyTypes = Array[PackedScene]([ExtResource("2_26o63")])
+enemyTypes = Array[PackedScene]([ExtResource("2_26o63"), ExtResource("5_4lx07")])
 
 [connection signal="death" from="player" to="." method="_on_player_death"]
 [connection signal="hit" from="player" to="." method="_on_player_hit"]

@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://8yg3n8x287n5"]
+
+[ext_resource type="PackedScene" uid="uid://c6un4pdfwvk7y" path="res://enemies/enemy.tscn" id="1_jauma"]
+[ext_resource type="Texture2D" uid="uid://dsifoc8xj3tnd" path="res://sprites/triangle.png" id="2_ni5oj"]
+
+[node name="triangleEnemy" instance=ExtResource("1_jauma")]
+
+[node name="Sprite2D" parent="." index="0"]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_ni5oj")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HurtboxComponent" index="0"]
+polygon = PackedVector2Array(-49, 42, 0, -42, 49, 42)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HitboxComponent" index="0"]
+polygon = PackedVector2Array(-49, 42, 0, -42, 49, 42)
+
+[node name="StatsComponent" parent="." index="4"]
+health = 4
