@@ -6,5 +6,5 @@ func _process(delta):
 	rotation = global_position.angle_to_point(get_global_mouse_position())
 
 func shoot():
-	spawner.spawnWithDirection(get_global_mouse_position(), $weaponMuzzle.global_position)
+	spawner.spawnWithRotation(rotation, $weaponMuzzle.global_position)
 	

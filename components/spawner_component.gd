@@ -24,8 +24,8 @@ func spawn(
 	# on it after instancing it.
 	return instance
 	
-func spawnWithDirection(
-	direction: Vector2,
+func spawnWithRotation(
+	rotation: float,
 	global_spawn_position: Vector2 = global_position,
 	parent: Node = get_tree().current_scene
 ) -> Node:
@@ -33,7 +33,7 @@ func spawnWithDirection(
 	# Instance the scene
 	var instance = scene.instantiate()
 	instance.global_position = global_spawn_position
-	instance.direction = Vector2.RIGHT.rotated(global_rotation)
+	instance.direction = Vector2.RIGHT.rotated(rotation)
 	parent.add_child(instance)
 	return instance
 
