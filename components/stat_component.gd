@@ -6,11 +6,7 @@ extends Node
 @export var health: int = 1:
 	set(value):
 		health = value
-		
-		# Signal out that the health has changed
 		health_changed.emit()
-		
-		# Signal out when health is at 0
 		if health == 0: no_health.emit()
 
 # Create our signals for health
