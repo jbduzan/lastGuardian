@@ -1,4 +1,5 @@
 extends Node2D
+signal death
 
 @onready var flash_component = $FlashComponent
 @onready var shake_component = $ShakeComponent
@@ -15,6 +16,6 @@ func _on_hurtbox_component_hurt(hitbox):
 func _on_hitbox_component_hit_hurtbox(hurtbox):
 	queue_free()
 
-
 func _on_stats_component_no_health():
+	death.emit($StatsComponent.xp)
 	queue_free()

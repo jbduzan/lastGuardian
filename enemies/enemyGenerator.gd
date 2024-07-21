@@ -1,4 +1,5 @@
 extends Node2D
+signal death
 
 @onready var spawn_timer = $spawnTimer
 @onready var spawner_component = $SpawnerComponent as SpawnerComponent
@@ -18,7 +19,10 @@ func handleSpawn(enemyScene: PackedScene):
 	enemySpawnLocation.progress_ratio = randf()
 	spawner_component.scene = enemyScene
 	var rotation = enemySpawnLocation.position.angle_to_point(playerPosition)
-	spawner_component.spawnWithRotation(rotation, enemySpawnLocation.position)
+	var enemyInstance = spawner_component.spawnWithRotation(rotation, enemySpawnLocation.position)
+	enemyInstance.death.connect(func(xp: int):
+		death.emit(xp)
+	)
 	
 func stop():
 	spawn_timer.stop()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c0pqq4vfl7pif"]
+[gd_scene load_steps=13 format=3 uid="uid://c0pqq4vfl7pif"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_3ddip"]
 [ext_resource type="Texture2D" uid="uid://dpw8ej3btt2kc" path="res://sprites/circle.png" id="2_kbfn6"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://components/stat_component.gd" id="7_rujit"]
 [ext_resource type="Script" path="res://components/hurtbox_component.gd" id="8_3evoq"]
 [ext_resource type="Script" path="res://components/hurt_component.gd" id="9_ohxmo"]
+[ext_resource type="Script" path="res://components/flash_component.gd" id="11_qcr3w"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_446kf"]
 radius = 400.0
@@ -25,7 +26,7 @@ rotation = 1.5708
 texture = ExtResource("2_kbfn6")
 
 [node name="shootTimer" type="Timer" parent="."]
-wait_time = 0.4
+wait_time = 0.001
 autostart = true
 
 [node name="weapon" type="Node2D" parent="."]
@@ -51,9 +52,12 @@ scene = ExtResource("4_wjd53")
 [node name="ScaleComponent" type="Node" parent="weapon" node_paths=PackedStringArray("sprite")]
 script = ExtResource("7_fuolq")
 sprite = NodePath("../weaponMuzzle/Sprite2D")
+scale_duration = 0.1
 
 [node name="StatsComponent" type="Node" parent="."]
 script = ExtResource("7_rujit")
+health = 5
+xp = 0
 
 [node name="HurtboxComponent" type="Area2D" parent="."]
 script = ExtResource("8_3evoq")
@@ -66,6 +70,11 @@ script = ExtResource("9_ohxmo")
 stats_component = NodePath("../StatsComponent")
 hurtbox_component = NodePath("../HurtboxComponent")
 
+[node name="FlashComponent" type="Node" parent="." node_paths=PackedStringArray("sprite")]
+script = ExtResource("11_qcr3w")
+sprite = NodePath("../Sprite2D")
+
 [connection signal="timeout" from="shootTimer" to="." method="shoot"]
+[connection signal="health_changed" from="StatsComponent" to="." method="_on_stats_component_health_changed"]
 [connection signal="no_health" from="StatsComponent" to="." method="_on_stats_component_no_health"]
 [connection signal="hurt" from="HurtboxComponent" to="." method="_on_hurtbox_component_hurt"]

@@ -18,3 +18,4 @@ shape = SubResource("RectangleShape2D_i5cxc")
 
 [node name="StatsComponent" parent="." index="4"]
 health = 2
+xp = 2

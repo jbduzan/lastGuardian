@@ -1,9 +1,13 @@
 extends Node2D
-signal hit
-signal death
+signal onXpGained
+signal onLvlGained
 
-var smoothMousePosition: Vector2
-var hp = 2
+@onready var shoot_timer = $shootTimer
+@onready var scale_component = $weapon/ScaleComponent
+@onready var flash_component = $FlashComponent
+
+func _ready():
+	scale_component.scale_duration = shoot_timer.wait_time
 
 func setPosition(pos):
 	position = pos
@@ -11,7 +15,18 @@ func setPosition(pos):
 func shoot():
 	$weapon.shoot()
 
+func xpGained(xp:int):
+	$StatsComponent.xp += xp
+	
+	if ($StatsComponent.xp >= 10):
+		$StatsComponent.xp = max(0, $StatsComponent.xp - 10)
+		$StatsComponent.lvl += 1
+		onLvlGained.emit($StatsComponent.lvl)
+		
+	onXpGained.emit($StatsComponent.xp)
 
 func _on_stats_component_no_health():
 	queue_free()
-	death.emit()
+
+func _on_stats_component_health_changed():
+	flash_component.flash()

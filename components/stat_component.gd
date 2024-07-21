@@ -9,6 +9,9 @@ extends Node
 		health_changed.emit()
 		if health == 0: no_health.emit()
 
+@export var xp: int = 1
+@export var lvl: int = 1
+
 # Create our signals for health
 signal health_changed() # Emit when the health value has changed
 signal no_health() # Emit when there is no health left

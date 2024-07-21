@@ -25,5 +25,15 @@ position = Vector2(960, 540)
 [node name="EnemyGenerator" parent="." instance=ExtResource("4_21mmo")]
 enemyTypes = Array[PackedScene]([ExtResource("2_26o63"), ExtResource("5_4lx07")])
 
-[connection signal="death" from="player" to="." method="_on_player_death"]
-[connection signal="hit" from="player" to="." method="_on_player_hit"]
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = 128.0
+offset_top = 8.0
+offset_right = 640.0
+offset_bottom = 35.0
+max_value = 10.0
+step = 1.0
+value = 1.0
+
+[connection signal="onLvlGained" from="player" to="." method="_on_player_on_lvl_gained"]
+[connection signal="onXpGained" from="player" to="." method="_on_player_on_xp_gained"]
+[connection signal="death" from="EnemyGenerator" to="." method="_on_enemy_generator_death"]
