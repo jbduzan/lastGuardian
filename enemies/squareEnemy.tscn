@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://cek585jf0s8fx"]
+
+[ext_resource type="PackedScene" uid="uid://c6un4pdfwvk7y" path="res://enemies/enemy.tscn" id="1_ehngj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eno1y"]
+size = Vector2(128, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i5cxc"]
+size = Vector2(128, 128)
+
+[node name="squareEnemy" instance=ExtResource("1_ehngj")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" index="0"]
+shape = SubResource("RectangleShape2D_eno1y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" index="0"]
+shape = SubResource("RectangleShape2D_i5cxc")
+
+[node name="StatsComponent" parent="." index="4"]
+health = 2

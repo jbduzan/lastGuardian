@@ -1,0 +1,67 @@
+[gd_scene load_steps=11 format=3 uid="uid://c0pqq4vfl7pif"]
+
+[ext_resource type="Script" path="res://player/player.gd" id="1_3ddip"]
+[ext_resource type="Texture2D" uid="uid://dpw8ej3btt2kc" path="res://sprites/circle.png" id="2_kbfn6"]
+[ext_resource type="Script" path="res://components/spawner_component.gd" id="3_vrce8"]
+[ext_resource type="PackedScene" uid="uid://boykuxwyr0eou" path="res://player/bullet.tscn" id="4_wjd53"]
+[ext_resource type="Script" path="res://player/weaponAnchor.gd" id="5_4lbqy"]
+[ext_resource type="Texture2D" uid="uid://crm8jwbixdljb" path="res://sprites/weapon.png" id="5_s7ie5"]
+[ext_resource type="Script" path="res://components/stat_component.gd" id="7_rujit"]
+[ext_resource type="Script" path="res://components/hurtbox_component.gd" id="8_3evoq"]
+[ext_resource type="Script" path="res://components/hurt_component.gd" id="9_ohxmo"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_446kf"]
+radius = 400.0
+
+[node name="player" type="Node2D"]
+position = Vector2(2.08165e-12, 2.08165e-12)
+scale = Vector2(0.1, 0.1)
+script = ExtResource("1_3ddip")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.5708
+texture = ExtResource("2_kbfn6")
+
+[node name="shootTimer" type="Timer" parent="."]
+wait_time = 0.4
+autostart = true
+
+[node name="weapon" type="Node2D" parent="."]
+position = Vector2(2.08165e-12, 2.08165e-12)
+rotation = -0.00207649
+script = ExtResource("5_4lbqy")
+
+[node name="weaponMuzzle" type="Node2D" parent="weapon"]
+position = Vector2(659.999, 1.37044)
+
+[node name="Sprite2D" type="Sprite2D" parent="weapon/weaponMuzzle"]
+position = Vector2(-99.9998, -0.18689)
+rotation = 1.5708
+scale = Vector2(10, 10)
+texture = ExtResource("5_s7ie5")
+
+[node name="SpawnerComponent" type="Node2D" parent="weapon"]
+position = Vector2(-2.07732e-12, -2.08596e-12)
+rotation = 0.00207649
+script = ExtResource("3_vrce8")
+scene = ExtResource("4_wjd53")
+
+[node name="StatsComponent" type="Node" parent="."]
+script = ExtResource("7_rujit")
+health = 3
+
+[node name="HurtboxComponent" type="Area2D" parent="."]
+script = ExtResource("8_3evoq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
+shape = SubResource("CircleShape2D_446kf")
+
+[node name="HurtComponent" type="Node" parent="." node_paths=PackedStringArray("stats_component", "hurtbox_component")]
+script = ExtResource("9_ohxmo")
+stats_component = NodePath("../StatsComponent")
+hurtbox_component = NodePath("../HurtboxComponent")
+
+[connection signal="timeout" from="shootTimer" to="." method="shoot"]
+[connection signal="no_health" from="StatsComponent" to="." method="_on_stats_component_no_health"]
+[connection signal="hurt" from="HurtboxComponent" to="." method="_on_hurtbox_component_hurt"]
