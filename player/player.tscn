@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c0pqq4vfl7pif"]
+[gd_scene load_steps=12 format=3 uid="uid://c0pqq4vfl7pif"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_3ddip"]
 [ext_resource type="Texture2D" uid="uid://dpw8ej3btt2kc" path="res://sprites/circle.png" id="2_kbfn6"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://boykuxwyr0eou" path="res://player/bullet.tscn" id="4_wjd53"]
 [ext_resource type="Script" path="res://player/weaponAnchor.gd" id="5_4lbqy"]
 [ext_resource type="Texture2D" uid="uid://crm8jwbixdljb" path="res://sprites/weapon.png" id="5_s7ie5"]
+[ext_resource type="Script" path="res://components/scale_component.gd" id="7_fuolq"]
 [ext_resource type="Script" path="res://components/stat_component.gd" id="7_rujit"]
 [ext_resource type="Script" path="res://components/hurtbox_component.gd" id="8_3evoq"]
 [ext_resource type="Script" path="res://components/hurt_component.gd" id="9_ohxmo"]
@@ -47,9 +48,12 @@ rotation = 0.00207649
 script = ExtResource("3_vrce8")
 scene = ExtResource("4_wjd53")
 
+[node name="ScaleComponent" type="Node" parent="weapon" node_paths=PackedStringArray("sprite")]
+script = ExtResource("7_fuolq")
+sprite = NodePath("../weaponMuzzle/Sprite2D")
+
 [node name="StatsComponent" type="Node" parent="."]
 script = ExtResource("7_rujit")
-health = 3
 
 [node name="HurtboxComponent" type="Area2D" parent="."]
 script = ExtResource("8_3evoq")
