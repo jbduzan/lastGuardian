@@ -14,6 +14,7 @@ point_count = 5
 script = ExtResource("1_1lhjp")
 
 [node name="spawnTimer" type="Timer" parent="."]
+wait_time = 0.5
 autostart = true
 
 [node name="SpawnerComponent" type="Node2D" parent="."]

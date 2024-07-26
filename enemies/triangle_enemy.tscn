@@ -16,4 +16,4 @@ polygon = PackedVector2Array(-49, 42, 0, -42, 49, 42)
 polygon = PackedVector2Array(-49, 42, 0, -42, 49, 42)
 
 [node name="StatsComponent" parent="." index="4"]
-health = 4
+health = 3

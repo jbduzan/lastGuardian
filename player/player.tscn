@@ -26,7 +26,6 @@ rotation = 1.5708
 texture = ExtResource("2_kbfn6")
 
 [node name="shootTimer" type="Timer" parent="."]
-wait_time = 0.001
 autostart = true
 
 [node name="weapon" type="Node2D" parent="."]
@@ -42,6 +41,15 @@ position = Vector2(-99.9998, -0.18689)
 rotation = 1.5708
 scale = Vector2(10, 10)
 texture = ExtResource("5_s7ie5")
+
+[node name="muzzleCenter" type="Marker2D" parent="weapon/weaponMuzzle"]
+position = Vector2(150, 2.08165e-12)
+
+[node name="muzzleTop" type="Marker2D" parent="weapon/weaponMuzzle"]
+position = Vector2(150, -200)
+
+[node name="muzzleBottom" type="Marker2D" parent="weapon/weaponMuzzle"]
+position = Vector2(150, 200)
 
 [node name="SpawnerComponent" type="Node2D" parent="weapon"]
 position = Vector2(-2.07732e-12, -2.08596e-12)

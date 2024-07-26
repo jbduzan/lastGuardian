@@ -20,6 +20,7 @@ func handleSpawn(enemyScene: PackedScene):
 	spawner_component.scene = enemyScene
 	var rotation = enemySpawnLocation.position.angle_to_point(playerPosition)
 	var enemyInstance = spawner_component.spawnWithRotation(rotation, enemySpawnLocation.position)
+	enemyInstance.add_to_group("enemies")
 	enemyInstance.death.connect(func(xp: int):
 		death.emit(xp)
 	)
