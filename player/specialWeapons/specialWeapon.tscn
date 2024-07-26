@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://b1rv52i27f4h0"]
+
+[ext_resource type="Texture2D" uid="uid://bvhf5nj7pgwoe" path="res://icon.svg" id="1_fvyss"]
+[ext_resource type="Script" path="res://player/specialWeapons/specialWeapon.gd" id="1_hn4oo"]
+[ext_resource type="Script" path="res://components/moveTo_component.gd" id="2_i8ckr"]
+[ext_resource type="Script" path="res://components/hitbox_component.gd" id="3_iqqj7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hs4wn"]
+size = Vector2(12, 12)
+
+[node name="SpecialWeapon" type="Node2D"]
+script = ExtResource("1_hn4oo")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_fvyss")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+scale = Vector2(0.857143, 0.857143)
+rect = Rect2(-7, -7, 14, 14)
+
+[node name="MoveToComponent" type="Node" parent="." node_paths=PackedStringArray("actor")]
+script = ExtResource("2_i8ckr")
+actor = NodePath("..")
+
+[node name="HitboxComponent" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("3_iqqj7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+shape = SubResource("RectangleShape2D_hs4wn")

@@ -20,7 +20,7 @@ func shoot():
 func xpGained(xp:int):
 	$StatsComponent.xp += xp
 	
-	if ($StatsComponent.xp >= 1):
+	if ($StatsComponent.xp >= 1000):
 		$StatsComponent.xp = max(0, $StatsComponent.xp - 10)
 		$StatsComponent.lvl += 1
 		onLvlGained.emit($StatsComponent.lvl)

@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var spawner: SpawnerComponent = $SpawnerComponent
+@onready var spawner: SpawnerComponent = $bulletSpawner
 @onready var scaler: ScaleComponent = $ScaleComponent
 
 func _process(delta):
@@ -22,16 +22,9 @@ func shoot(numberOfShoot: int):
 	scaler.tween_scale()
 	
 func shootSpecialWeapon():
-	var enemies = get_tree().get_nodes_in_group("enemies")
-	enemies.sort_custom(func(a, b):
-		var distanceA = a.position.distance_to(global_position)
-		var distanceB = b.position.distance_to(global_position)
-		return distanceA < distanceB
-	)
-	
-	for i in range(10):
-		var target = enemies.pop_front()
-		
-		if target:
-			var targetRotation = global_position.angle_to_point(target.position)
-			spawner.spawnWithRotation(targetRotation, $weaponMuzzle/muzzleCenter.global_position)
+	var weapon = load("res://player/specialWeapons/heartSeekingMissile.tscn").instantiate()
+	$specialWeaponSpawner.scene = load("res://player/specialWeapons/heartSeekingMissile.tscn")
+	weapon.weaponMuzzlePosition = $weaponMuzzle/muzzleCenter.global_position
+	add_child(weapon)
+	weapon.shoot($specialWeaponSpawner)
+	$specialWeaponSpawner.scene = null

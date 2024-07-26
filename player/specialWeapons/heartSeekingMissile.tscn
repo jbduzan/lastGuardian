@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cm40fuxentawx"]
+
+[ext_resource type="PackedScene" uid="uid://b1rv52i27f4h0" path="res://player/specialWeapons/specialWeapon.tscn" id="1_jbm6s"]
+[ext_resource type="Script" path="res://player/specialWeapons/heartSeekingMissile.gd" id="2_4vrax"]
+
+[node name="heartSeekingMissile" instance=ExtResource("1_jbm6s")]
+script = ExtResource("2_4vrax")
+
+[node name="HitboxComponent" parent="." index="3"]
+damage = 25.0

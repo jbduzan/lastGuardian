@@ -26,6 +26,7 @@ rotation = 1.5708
 texture = ExtResource("2_kbfn6")
 
 [node name="shootTimer" type="Timer" parent="."]
+wait_time = 0.3
 autostart = true
 
 [node name="weapon" type="Node2D" parent="."]
@@ -51,7 +52,7 @@ position = Vector2(150, -200)
 [node name="muzzleBottom" type="Marker2D" parent="weapon/weaponMuzzle"]
 position = Vector2(150, 200)
 
-[node name="SpawnerComponent" type="Node2D" parent="weapon"]
+[node name="bulletSpawner" type="Node2D" parent="weapon"]
 position = Vector2(-2.07732e-12, -2.08596e-12)
 rotation = 0.00207649
 script = ExtResource("3_vrce8")
@@ -61,6 +62,9 @@ scene = ExtResource("4_wjd53")
 script = ExtResource("7_fuolq")
 sprite = NodePath("../weaponMuzzle/Sprite2D")
 scale_duration = 0.1
+
+[node name="specialWeaponSpawner" type="Node2D" parent="weapon"]
+script = ExtResource("3_vrce8")
 
 [node name="StatsComponent" type="Node" parent="."]
 script = ExtResource("7_rujit")

@@ -7,7 +7,7 @@ extends Node
 	set(value):
 		health = value
 		health_changed.emit()
-		if health == 0: no_health.emit()
+		if health <= 0: no_health.emit()
 
 @export var xp: int = 1
 @export var lvl: int = 1
