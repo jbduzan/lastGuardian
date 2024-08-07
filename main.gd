@@ -19,11 +19,12 @@ func _on_enemy_generator_death(xp: int):
 func _on_player_on_lvl_gained(lvl: int):
 	get_tree().paused = true
 	var levelUpScene = load("res://ui/level_up.tscn").instantiate()
+	levelUpScene.playerLevel = lvl
 	add_child(levelUpScene)
-	levelUpScene.levelUpDone.connect(func(upgradeId: int): 
+	levelUpScene.levelUpDone.connect(func(upgradeId: int, upgradeType: int): 
 		get_tree().paused = false
 		remove_child(levelUpScene)
-		$player.onUpgrade(upgradeId)
+		$player.onUpgrade(upgradeId, upgradeType)
 	)
 
 func _on_player_on_xp_gained(xp :int):

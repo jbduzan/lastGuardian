@@ -28,3 +28,4 @@ func shootSpecialWeapon():
 	add_child(weapon)
 	weapon.shoot($specialWeaponSpawner)
 	$specialWeaponSpawner.scene = null
+	

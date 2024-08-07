@@ -6,6 +6,10 @@ signal onLvlGained
 @onready var scale_component = $weapon/ScaleComponent
 @onready var flash_component = $FlashComponent
 
+var classicUpgradesType = 1;
+var defensiveUpgradesType = 2;
+var offsenivesUpgradesType = 3;
+
 var numberOfShoot = 1
 
 func _ready():
@@ -20,7 +24,7 @@ func shoot():
 func xpGained(xp:int):
 	$StatsComponent.xp += xp
 	
-	if ($StatsComponent.xp >= 1000):
+	if ($StatsComponent.xp >= 10):
 		$StatsComponent.xp = max(0, $StatsComponent.xp - 10)
 		$StatsComponent.lvl += 1
 		onLvlGained.emit($StatsComponent.lvl)
@@ -33,7 +37,18 @@ func _on_stats_component_no_health():
 func _on_stats_component_health_changed():
 	flash_component.flash()
 
-func onUpgrade(upgradeId: int):
+func onUpgrade(upgradeId: int, upgradeType: int):
+	match upgradeType:
+		classicUpgradesType:
+			classicUpgrades(upgradeId)
+
+func classicUpgrades(upgradeId: int):
 	match upgradeId:
 		1:
 			numberOfShoot += 1
+
+func defensiveUpgrades(upgradeId: int):
+	pass
+	
+func offensiveUpgrades(upgradeId: int):
+	pass

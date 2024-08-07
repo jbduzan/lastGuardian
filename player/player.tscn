@@ -26,7 +26,7 @@ rotation = 1.5708
 texture = ExtResource("2_kbfn6")
 
 [node name="shootTimer" type="Timer" parent="."]
-wait_time = 0.3
+wait_time = 0.01
 autostart = true
 
 [node name="weapon" type="Node2D" parent="."]
