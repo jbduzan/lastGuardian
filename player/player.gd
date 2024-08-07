@@ -9,15 +9,35 @@ signal onLvlGained
 var classicUpgradesType = 1;
 var defensiveUpgradesType = 2;
 var offsenivesUpgradesType = 3;
+var defensiveSlot: String
+var offensiveSlot: String
 
 var numberOfShoot = 1
 
 func _ready():
 	scale_component.scale_duration = shoot_timer.wait_time
+	
+func _input(event: InputEvent):
+	if event.is_action_pressed("defensive_input"):
+		useDefensiveSlot()
+	if event.is_action_pressed("offensive_input"):
+		useOffensiveSlot()
 
 func setPosition(pos):
 	position = pos
-#
+
+func useDefensiveSlot():
+	if defensiveSlot:
+		call(defensiveSlot)
+	
+func useOffensiveSlot():
+	if offensiveSlot:
+		call(offensiveSlot)
+
+func spawnShield():
+	var shield = load("res://player/specialWeapons/shield.tscn").instantiate()
+	add_child(shield)
+
 func shoot():
 	$weapon.shoot(numberOfShoot)
 
@@ -41,6 +61,10 @@ func onUpgrade(upgradeId: int, upgradeType: int):
 	match upgradeType:
 		classicUpgradesType:
 			classicUpgrades(upgradeId)
+		defensiveUpgradesType:
+			defensiveUpgrades(upgradeId)
+		offsenivesUpgradesType:
+			offensiveUpgrades(upgradeId)
 
 func classicUpgrades(upgradeId: int):
 	match upgradeId:
@@ -48,7 +72,9 @@ func classicUpgrades(upgradeId: int):
 			numberOfShoot += 1
 
 func defensiveUpgrades(upgradeId: int):
-	pass
+	match upgradeId:
+		1: 
+			defensiveSlot = 'spawnShield'
 	
 func offensiveUpgrades(upgradeId: int):
 	pass
