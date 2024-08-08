@@ -25,13 +25,11 @@ func defensivesUpgrades():
 	var file = "res://player/defensiveUpgrades.json"
 	var json_as_text = FileAccess.get_file_as_string(file)
 	select3RandomsUpgrades(JSON.parse_string(json_as_text), defensiveUpgradesType)
-	pass
 
 func offensivesUpgrades():
 	var file = "res://player/offensiveUpgrades.json"
 	var json_as_text = FileAccess.get_file_as_string(file)
 	select3RandomsUpgrades(JSON.parse_string(json_as_text), offsenivesUpgradesType)
-	pass
 
 func classicUpgrades():
 	var file = "res://player/upgrades.json"

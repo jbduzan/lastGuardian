@@ -32,7 +32,7 @@ func useDefensiveSlot():
 	
 func useOffensiveSlot():
 	if offensiveSlot:
-		call(offensiveSlot)
+		$weapon.shootSpecialWeapon(offensiveSlot)
 
 func spawnShield():
 	var shield = load("res://player/specialWeapons/shield.tscn").instantiate()
@@ -77,4 +77,6 @@ func defensiveUpgrades(upgradeId: int):
 			defensiveSlot = 'spawnShield'
 	
 func offensiveUpgrades(upgradeId: int):
-	pass
+	match upgradeId:
+		1:
+			offensiveSlot = 'heartSeekingMissile'
