@@ -37,10 +37,21 @@ func classicUpgrades():
 	select3RandomsUpgrades(JSON.parse_string(json_as_text), classicUpgradesType)
 
 func select3RandomsUpgrades(upgrades: Array, upgradeType: int):
-	upgrades.shuffle()
-	var up1 = upgrades.pop_front()
-	var up2 = upgrades.pop_front()
-	var up3 = upgrades.pop_front()
+	var weightedUpgrades = []
+	
+	for upgrade in upgrades:
+		var weight = 1
+		
+		if "weight" in upgrade:
+			weight = upgrade.weight
+		
+		for i in range(weight):
+			weightedUpgrades.append(upgrade)
+	
+	weightedUpgrades.shuffle()
+	var up1 = weightedUpgrades.pop_front()
+	var up2 = weightedUpgrades.pop_front()
+	var up3 = weightedUpgrades.pop_front()
 	
 	if up1:
 		upgrade1.get_child(0).text = up1.description

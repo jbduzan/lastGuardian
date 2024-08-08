@@ -1,14 +1,22 @@
 [
 	{
 		"id": 1,
-		"description": "Shoot one more bullet"
+		"description": "Shoot one more bullet",
+		"weight": 1
 	},
 	{
 		"id": 2,
-		"description": "je ne sais pas"
+		"description": "je ne sais pas",
+		"weight": 5
 	},
 	{
 		"id": 3,
-		"description": "je ne sais pas plus"
+		"description": "je ne sais pas plus",
+		"weight": 5
+	},
+	{
+		"id": 4,
+		"description": "je ne sais toujours pas",
+		"weight": 5
 	}
 ]
